@@ -130,7 +130,7 @@ http://localhost:8000/
 
 # 📝💻 Coding Style Guide
 
-**Last Updated:** March 2025  
+**Last Updated:** September 2025  
 **Author:** Joaquin Garcia-Huerta
 
 <details>
