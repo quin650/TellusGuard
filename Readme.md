@@ -1,14 +1,14 @@
-# [TellusEd](https://tellused.com/)
+# [TellusGuard](https://tellusguard.com/)
 
 <br>
 
 ## 📚 Overview
 
-[TellusEd](https://tellused.com/) - a note taking app + more! <br />
+[TellusGuard](https://tellusguard.com/) - an advanced reconciliation tool for Accountants! <br />
 
-- You can also teach!<br />
-- While learning and taking notes, improve how a section is taught!<br />
-- Tell us/educate us by sharing your "improved" version of "that" learning section.<br />
+- Share your technical reconciliation code!<br />
+- Create custom algorithms for large data sets! <br />
+- Tell us/Guard your accounting processes behind GuardRails<br />
 
 ## 💾 Install
 
@@ -43,7 +43,7 @@
 1. Clone the repo:
 
 ```
-https://github.com/quin650/TellusEd.git
+https://github.com/quin650/TellusGuard.git
 ```
 
 2. Create python Virtual Environment and activate:
