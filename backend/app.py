@@ -76,7 +76,7 @@ print(str(response))
 
 # ! The afore mentioned, can be created using one simple helper function:
 # from utils import get_router_query_engine
-# query_engine = get_router_query_engine("metagpt.pdf")
+# query_engine = get_router_query_engine("data/Python_Wikipedia.txt")
 
-# response = query_engine.query("Tell me about the ablation study results?")
+# response = query_engine.query("Tell me about the python language?")
 # print(str(response))
