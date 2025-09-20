@@ -1,0 +1,6 @@
+*.env
+*.venv
+*.vscode
+
+# misc
+*.DS_Store
