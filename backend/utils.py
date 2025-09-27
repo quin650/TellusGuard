@@ -10,7 +10,6 @@ from llama_index.core.tools import QueryEngineTool
 from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
 from llama_index.core.selectors import LLMSingleSelector 
 
-
 def get_router_query_engine(
     filepath: str,
     llm_model: str = "gpt-3.5-turbo",
@@ -49,5 +48,11 @@ def get_router_query_engine(
             query_engine_tools=[summary_tool, vector_tool],
             verbose=verbose,
         )
-
     return router
+
+def getLLMObject(
+    llm_model: str = "gpt-3.5-turbo",
+    api_key: str = OPENAI_API_KEY,
+) -> OpenAI:
+    Settings.llm = OpenAI(model=llm_model, api_key=api_key)
+    return Settings.llm 

@@ -38,7 +38,7 @@ from llama_index.core.tools import QueryEngineTool
 summary_tool = QueryEngineTool.from_defaults(
     query_engine=summary_query_engine,
     description=(
-        "Useful for retrieving specific details from the Python article."
+        "Useful for retrieving general details from the Python article."
     ),
 )
 vector_tool = QueryEngineTool.from_defaults(
