@@ -48,37 +48,9 @@ def get_router_query_engine(
         ),
     )
 
-    def vector_query(
-        query: str, 
-        page_numbers: List[str]
-    ) -> str:
-        """Perform a vector search over an index.
-        query (str): the string query to be embedded.
-        page_numbers (List[str]): Filter by set of pages. Leave BLANK if we want to perform a vector search
-            over all pages. Otherwise, filter by the set of specified pages.
-        """
-
-        metadata_dicts = [
-            {"key": "page_label", "value": p} for p in page_numbers
-        ]
-        
-        query_engine = vector_index.as_query_engine(
-            similarity_top_k=2,
-            filters=MetadataFilters.from_dicts(
-                metadata_dicts,
-                condition=FilterCondition.OR
-            )
-        )
-        response = query_engine.query(query)
-        return response
-    vector_query_tool = FunctionTool.from_defaults(
-        name="vector_tool",
-        fn=vector_query
-    )
-
     router = RouterQueryEngine(
             selector=LLMSingleSelector.from_defaults(),
-            query_engine_tools=[summary_tool, vector_tool, vector_query_tool],
+            query_engine_tools=[summary_tool, vector_tool],
             verbose=verbose,
         )
     return router
