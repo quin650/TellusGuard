@@ -1,11 +1,6 @@
 {
 	"python.defaultInterpreterPath": "${workspaceFolder}/backend/.venv/bin/python",
 	"python.terminal.activateEnvironment": true,
-	"workbench.colorCustomizations": {
-		"activityBar.background": "#4D0C5F",
-		"titleBar.activeBackground": "#6C1084",
-		"titleBar.activeForeground": "#FEFBFE"
-	},
 	"editor.tokenColorCustomizations": {
 		"comments": "#fc3782",
 		"textMateRules": []

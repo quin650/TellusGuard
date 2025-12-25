@@ -11,8 +11,8 @@ from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
 from llama_index.core.selectors import LLMSingleSelector
 
 #? Workflow - 
-#? Query -> Embedding Model -> Finds similar Embeddings -> Returns relevant Chunks of Text 
-#? Query + Chunks of Text -> LLM
+#? Data -> Embedding Model -> Finds similar Embeddings -> Returns relevant Chunks of Text 
+#? Query + Chunks of Text -> LLM -> Answer
 
 #! Load .env no matter where you run from
 load_dotenv(find_dotenv(), override=True)
@@ -33,7 +33,7 @@ nodes = splitter.get_nodes_from_documents(documents)
 Settings.llm = OpenAI(model="gpt-4o-mini", api_key=OPENAI_API_KEY)
 Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-small", api_key=OPENAI_API_KEY)
 
-#! Define Vector Index/Summary Index
+#! Define Summary Index/Vector Index
 summary_index = SummaryIndex(nodes)
 vector_index = VectorStoreIndex(nodes)
 
