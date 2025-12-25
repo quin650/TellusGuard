@@ -9,6 +9,7 @@ from llama_index.core import SummaryIndex, VectorStoreIndex
 from llama_index.core.tools import QueryEngineTool
 from llama_index.core.query_engine.router_query_engine import RouterQueryEngine
 from llama_index.core.selectors import LLMSingleSelector
+from llama_index.core.vector_stores import MetadataFilters
 
 #? Workflow - 
 #? Data -> Embedding Model -> Finds similar Embeddings -> Returns relevant Chunks of Text 
@@ -22,7 +23,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     raise EnvironmentError("Missing OPENAI_API_KEY in environment variables.")
 
-#! load documents
+#! Load documents
 documents = SimpleDirectoryReader(input_files=["backend/data/Python_Wikipedia.txt"]).load_data()
 
 #! Sentence Splitter into nodes
@@ -42,7 +43,16 @@ summary_engine = summary_index.as_query_engine(
     response_mode="tree_summarize",
     use_async=True,
 )
-vector_engine = vector_index.as_query_engine(similarity_top_k=5)
+
+#! These metadatafilters help hone down the data being searched.
+vector_engine = vector_index.as_query_engine(
+    similarity_top_k=2,
+    filters=MetadataFilters.from_dicts(
+        [
+            {"key": "file_name", "value": "Python_Wikipedia.txt"}
+        ]
+    )
+)
 
 #! Turn query engines into tools (same as query engines, but with meta data)
 summary_tool = QueryEngineTool.from_defaults(
@@ -71,7 +81,13 @@ query_engine = RouterQueryEngine(
 #! Test some questions
 response = query_engine.query("What is small summary of the document?")
 print(str(response))
-response = query_engine.query(
-    "When was python invented and by who?"
+
+
+#! Based on the MetadataFilters params set in the vector_engine. can help filter the search data
+response = Settings.llm.predict_and_call(
+    [vector_tool, summary_tool], 
+    "Does Python_Wikipedia.txt? contain information on python?", 
+    verbose=True
 )
+
 print(str(response))
